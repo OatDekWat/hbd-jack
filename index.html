@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday - คำอวยพรวันเกิด</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Prompt', sans-serif;
+        }
+        
+        body {
+            background-color: #4a4e69;
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: rgba(0, 0, 0, 0.3);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #ffd166;
+        }
+        
+#homepage {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: linear-gradient(rgba(74, 78, 105, 0.8), rgba(74, 78, 105, 0.8));
+    overflow: hidden;
+}
+
+#bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(50%);
+    z-index: -1; /* ทำให้วิดีโออยู่ด้านหลังเนื้อหา */
+    pointer-events: none; /* ไม่ให้วิดีโอบล็อกการคลิก */
+}
+        
+        .background-stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .balloons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .balloon {
+            position: absolute;
+            width: 50px;
+            height: 60px;
+            border-radius: 50%;
+            animation: float 15s infinite ease-in-out;
+        }
+        
+        .main-title {
+            font-size: 4rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            animation: pulsate 2s infinite;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .cta-button {
+            background-color: #ffd166;
+            color: #333;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        #birthday-wishes {
+            padding: 5rem 2rem;
+            text-align: center;
+            background-color: #22223b;
+        }
+        
+        .wishes-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .wishes-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #ffd166;
+        }
+        
+        .wishes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .wish-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: left;
+            transition: transform 0.3s;
+        }
+        
+        .wish-card:hover {
+            transform: translateY(-10px);
+        }
+        .wish-card2 {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s;
+        
+            position: relative;
+            left: 410px;
+        }
+        
+        .wish-card2:hover {
+            transform: translateY(-10px);
+        }
+        
+        .wish-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .wish-author {
+            font-style: italic;
+            color: #ffd166;
+        }
+        
+        #cake-section {
+            background-image: url('bg-05.jpg'); /* ใส่ url ครอบชื่อไฟล์ */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cake-container {
+            position: relative;
+            margin-bottom: 2rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .cake-container:hover {
+            transform: scale(1.05);
+        }
+        
+        .cake {
+            width: 300px;
+            height: auto;
+            position: relative;
+        }
+        
+        .candles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            transition: opacity 0.5s;
+        }
+        
+        .blow-button {
+            background-color: #ef476f;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-top: 2rem;
+            font-weight: bold;
+        }
+        
+        .blow-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .fireworks-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+            display: none;
+        }
+        
+        .firework {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background-color: white;
+            transform-origin: center;
+        }
+        
+        .celebration-message {
+            font-size: 3rem;
+            text-align: center;
+            margin-top: 2rem;
+            color: #ffd166;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+        
+        footer {
+            padding: 2rem;
+            background-color: rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+        
+        @keyframes pulsate {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+            
+            .main-title {
+                font-size: 2.5rem;
+                padding: 0 1rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+                padding: 0 1rem;
+            }
+            
+            .cake {
+                width: 200px;
+            }
+            
+            .celebration-message {
+                font-size: 2rem;
+                padding: 0 1rem;
+            }
+            
+            .wishes-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .main-title {
+                font-size: 2rem;
+            }
+            
+            .cake {
+                width: 150px;
+            }
+            
+            .blow-button {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+            
+            .celebration-message {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="#" class="logo">
+            <span>🎂 Happy Birthday เเจ็คดอว์สัน นักสำรวจประจำตี้</span>
+        </a>
+        <div class="nav-links">
+            <a href="#homepage">หน้าหลัก</a>
+            <a href="#birthday-wishes">คำอวยพรวันเกิดจากทุกๆคลลลลล</a>
+            <a href="#cake-section">เป่าเค้ก</a>
+            <a href="https://www.instagram.com/t.chanon_10/">ติดต่อ</a>
+        </div>
+    </nav>
+    
+    <section id="homepage">
+    <!-- วิดีโอพื้นหลัง -->
+    <video id="bg-video" autoplay muted loop playsinline style="width: 100%; height: 100vh; object-fit: cover; position: absolute; z-index: -1;">
+        <source src="bg-01.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    
+    <!-- ปุ่มควบคุมเสียง -->
+    <div class="audio-controls">
+        <button id="unmute-btn">🔊 กดตรงนี้เปิดเสียงก่อนอิอิ</button>
+        <button id="vol-down">🔉 -</button>
+        <button id="vol-up">🔊 +</button>
+    </div>
+    
+    <style>
+        .audio-controls {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            z-index: 10;
+            display: flex;
+            gap: 15px;
+        }
+    
+        .audio-controls button {
+            font-size: 1.5rem;
+            padding: 12px 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            border: 2px solid #fff;
+            border-radius: 12px;
+            cursor: pointer;
+            backdrop-filter: blur(6px);
+            transition: all 0.3s ease;
+        }
+    
+        .audio-controls button:hover {
+            background-color: rgba(255, 255, 0, 0.6);
+            color: #000;
+            border-color: #ffeb3b;
+            transform: scale(1.1);
+        }
+    </style>
+    
+    <script>
+        const video = document.getElementById('bg-video');
+        const unmuteBtn = document.getElementById('unmute-btn');
+        const volDownBtn = document.getElementById('vol-down');
+        const volUpBtn = document.getElementById('vol-up');
+    
+        let volume = 0.5;
+        video.volume = volume;
+    
+        unmuteBtn.addEventListener('click', () => {
+            video.muted = false;
+            video.play();
+        });
+    
+        volDownBtn.addEventListener('click', () => {
+            volume = Math.max(0, volume - 0.1);
+            video.volume = volume.toFixed(1);
+        });
+    
+        volUpBtn.addEventListener('click', () => {
+            volume = Math.min(1, volume + 0.1);
+            video.volume = volume.toFixed(1);
+        });
+    </script>
+    
+    
+    <div class="background-stars"></div>
+    <div class="balloons"></div>
+
+    <h1 class="main-title">🎉 สุขสันต์วันเกิด 🎉</h1>
+    <p class="subtitle">ขอให้วันพิเศษนี้เต็มไปด้วยความสุข ความรัก และเสียงหัวเราะ(จากใจเเชทจีพีที)</p>
+    <a href="#cake-section" class="cta-button">เป่าเค้กวันเกิด</a>
+    </section>
+    
+    <section id="birthday-wishes">
+        <div class="wishes-container">
+            <h2 class="wishes-title">🎁 คำอวยพรวันเกิด 🎁</h2>
+            <div class="wishes-grid">
+                <div class="wish-card">
+                    <p class="wish-text">สุขภาพแข็งแรง พร้อมลุยทุกอย่างกับชีวิต เส้นทางราบรื่น มีความสุขตลอดปีและตลอดไปป                                    </p>
+                    <p class="wish-author">- เกรซซี่</p>
+                </div>
+                <div class="wish-card">
+                    <p class="wish-text">Happy Birthday Jackky 888
+                        ขอให้ปีนี้เป็นปีที่ดี เต็มไปด้วยรอยยิ้ม เสียงหัวเราะ และคนดีๆ รายล้อม
+                        ไม่ว่าจะเจอเรื่องอะไร ก็ขอให้ผ่านไปได้ด้วยพลังใจที่เข้มแข็ง และจงไต่เต้ามาเป็นเสาหลักให้ได้</p>
+                    <p class="wish-author">- แบงค์</p>
+                </div>
+                <div class="wish-card">
+                    <p class="wish-text">ขอให้สุขภาพแข็งแรง และใหญ่ ตามจำนวนคนให้พร คูณด้วย 20 เลยนะครับ ด้วยรักจากณัฐิวุฒิ</p>
+                    <p class="wish-author">- ณัฐิวุฒิ จันภูงาม(ปลื้ม)</p>
+                </div>
+                <div class="wish-card">
+                    <p class="wish-text">ขอให้มีความสุขนะเพื่อน (อ่านแบบไม่เว้นวรรคนะ) ขอให้สุขภาพแข็ง แรงไม่มี โรคภัยเบียดเบียน ขอให้สมหวังในความรักนะเพื่อน</p>
+                    <p class="wish-author">- ไม่รู้</p>
+                </div>
+                <div class="wish-card">
+                    <p class="wish-text">ขอให้รวยหมื่นล้า แสนล้านจนเงินทับเกือบสินแต่ไม่สิ้น จะได้เอาเงินไปเปย์เยอะๆนะครับ </p>
+                    <p class="wish-author">- จิรกิต อาญาเมือง (มาย)</p>
+                </div>
+                <div class="wish-card">
+                    <p class="wish-text">อายุเพิ่มขึ้นอีกหนึ่งปี ขอให้ความสุข ความสำเร็จ และพรที่ดีทุกอย่างเพิ่มเป็นทวีคูณ สุขสันต์วันเกิดนะ</p>
+                    <p class="wish-author">- เเชท จีพีทีไงจะใครล่ะ</p>
+                </div>
+                <div class="wish-card2">
+                    <a href="https://krunokpaclick.my.canva.site/happy-birthday-jacky"  
+                    style="color: red; display: block; text-align: center; margin: 50px auto; width: fit-content;">
+                    อันนี้พิเศษมากๆต้องกดดูเอง
+                 </a>
+                 <p class="wish-author" style="text-align: center;">- ธันว์นะอิอิ</p>
+                 
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="cake-section">
+        <h2 class="wishes-title">เป่าเค้กวันเกิด</h2>
+        <div class="cake-container">
+            <img src="02.jpg" alt="เค้กวันเกิด" class="cake">
+            <img src="/api/placeholder/300/300" alt=""class="candles" id="candles">
+        </div>
+        <button class="blow-button" id="blow-button">เป่าเทียน(ฟู่ว) 🎂</button>
+        <div class="celebration-message" id="celebration-message">
+            🎉 สุขสันต์วันเกิดฮาฟฟฟฟ มีความสุขมากๆ! 🎉<br>
+            <a href="https://docs.google.com/spreadsheets/d/1O1BcZsgA-xJlxyAV38bs6xuRlDLIH7L52aMyDWRRFSw/edit?usp=sharing" 
+            style="color: #ffd166; text-decoration: none;">
+            ดูคำอวยพรจากคนอื่นเพิ่มเติม
+         </a>
+        </div>
+        <div class="fireworks-container" id="fireworks-container"></div>
+    </section>
+    
+    <footer>
+        <p>© 2025 Birthday Jackie| ทำด้วยความรักและความปรารถนาดีจากเพิ่ลๆทุกคลที่ช่วยกันทำ</p>
+    </footer>
+    
+    <script>
+        // Create stars for background
+        document.addEventListener('DOMContentLoaded', function() {
+            const backgroundStars = document.querySelector('.background-stars');
+            const balloonsContainer = document.querySelector('.balloons');
+            
+            // Create stars
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.style.position = 'absolute';
+                star.style.width = `${Math.random() * 3 + 1}px`;
+                star.style.height = star.style.width;
+                star.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+                star.style.borderRadius = '50%';
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.animation = `pulsate ${Math.random() * 3 + 1}s infinite`;
+                backgroundStars.appendChild(star);
+            }
+            
+            // Create balloons
+            const colors = ['#ef476f', '#ffd166', '#06d6a0', '#118ab2', '#073b4c'];
+            for (let i = 0; i < 20; i++) {
+                const balloon = document.createElement('div');
+                balloon.className = 'balloon';
+                balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                balloon.style.left = `${Math.random() * 100}%`;
+                balloon.style.top = `${Math.random() * 100}%`;
+                balloon.style.animationDelay = `${Math.random() * 5}s`;
+                balloon.style.animationDuration = `${Math.random() * 10 + 10}s`;
+                balloonsContainer.appendChild(balloon);
+            }
+            
+            // Blow candles functionality
+            const blowButton = document.getElementById('blow-button');
+            const candles = document.getElementById('candles');
+            const fireworksContainer = document.getElementById('fireworks-container');
+            const celebrationMessage = document.getElementById('celebration-message');
+            
+            blowButton.addEventListener('click', function() {
+                // Hide candles
+                candles.style.opacity = '0';
+                
+                // Show fireworks
+                fireworksContainer.style.display = 'block';
+                
+                // Show celebration message
+                celebrationMessage.style.opacity = '1';
+                
+                // Create fireworks
+                createFireworks();
+                
+                // Disable button
+                blowButton.disabled = true;
+                blowButton.textContent = '🎉 วันเกิดที่แสนพิเศษ!';
+            });
+            
+            function createFireworks() {
+                // Clear existing fireworks
+                fireworksContainer.innerHTML = '';
+                
+                // Create multiple fireworks
+                for (let i = 0; i < 10; i++) {
+                    setTimeout(() => {
+                        const x = Math.random() * window.innerWidth;
+                        const y = Math.random() * (window.innerHeight / 2);
+                        createFirework(x, y);
+                    }, i * 300);
+                }
+            }
+            
+            function createFirework(x, y) {
+                const colors = ['#ff3cac', '#784ba0', '#2b86c5', '#ffb347', '#ffcc33', '#ffffff'];
+                
+                // Create firework particles
+                for (let i = 0; i < 80; i++) { // เพิ่มจำนวนอนุภาค
+                    const particle = document.createElement('div');
+                    particle.className = 'firework';
+                    particle.style.left = `${x}px`;
+                    particle.style.top = `${y}px`;
+            
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    particle.style.backgroundColor = color;
+            
+                    const angle = Math.random() * Math.PI * 2;
+                    const distance = Math.random() * 200 + 100; // ระยะกระจายมากขึ้น
+                    const duration = Math.random() * 1.5 + 1; // นานขึ้น
+            
+                    particle.style.width = '8px';  // ขนาดใหญ่ขึ้น
+                    particle.style.height = '8px';
+                    particle.style.borderRadius = '50%';
+                    particle.style.position = 'absolute';
+                    particle.style.pointerEvents = 'none';
+                    particle.style.zIndex = '9999';
+            
+                    particle.animate([
+                        { 
+                            transform: 'scale(1)',
+                            opacity: 1 
+                        },
+                        { 
+                            transform: `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px) scale(0.5)`,
+                            opacity: 0 
+                        }
+                    ], {
+                        duration: duration * 1000,
+                        easing: 'cubic-bezier(0.1, 0.1, 0.3, 1)'
+                    });
+            
+                    fireworksContainer.appendChild(particle);
+            
+                    setTimeout(() => {
+                        particle.remove();
+                    }, duration * 1000);
+                }
+            }
+            
+            // Smooth scrolling for navigation
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
