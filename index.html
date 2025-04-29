@@ -16,8 +16,73 @@
             background-color: #4a4e69;
             color: white;
             overflow-x: hidden;
+            font-size: 16px;
+            line-height: 1.6;
         }
         
+        /* Responsive Layout */
+        @media (max-width: 1024px) {
+            body {
+                font-size: 15px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                font-size: 14px;
+            }
+        
+            .main-title {
+                font-size: 2rem;
+                text-align: center;
+            }
+        
+            .subtitle {
+                font-size: 1rem;
+                padding: 0 1rem;
+                text-align: center;
+            }
+        
+            .cta-button {
+                font-size: 1rem;
+                padding: 0.75rem 1.5rem;
+            }
+        
+            .wish-card2 {
+                margin-left: 0 !important;
+                margin: 0 auto !important;
+            }
+        
+            .audio-controls {
+                bottom: 15px;
+                left: 15px;
+                gap: 10px;
+            }
+        
+            .audio-controls button {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                font-size: 13px;
+            }
+        
+            .main-title {
+                font-size: 1.6rem;
+            }
+        
+            .subtitle {
+                font-size: 0.95rem;
+            }
+        
+            .cta-button {
+                font-size: 0.95rem;
+            }
+        }
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -148,7 +213,7 @@
         
         .wishes-title {
             font-size: 2.5rem;
-            margin-bottom: 3rem;
+            margin-bottom: 1rem;
             color: #ffd166;
         }
         
@@ -177,10 +242,24 @@
             transition: transform 0.3s;
         
             position: relative;
-            left: 410px;
+            left: 200px;
         }
         
         .wish-card2:hover {
+            transform: translateY(-10px);
+        }
+        .wish-card3 {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s;
+        
+            position: relative;
+            left: 200px;
+        }
+        
+        .wish-card3:hover {
             transform: translateY(-10px);
         }
         
@@ -361,6 +440,7 @@
             .celebration-message {
                 font-size: 1.5rem;
             }
+
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;700&display=swap" rel="stylesheet">
@@ -420,6 +500,35 @@
             border-color: #ffeb3b;
             transform: scale(1.1);
         }
+        .a1 {
+            margin-bottom: 35px;
+            padding: 10px 20px; /* เพิ่ม padding เพื่อให้ลิงก์ดูมีพื้นที่มากขึ้น */
+            text-decoration: none; /* ลบขีดเส้นใต้ */
+            background-color: #ffcc00; /* ตัวอย่างสีพื้นหลัง */
+            color: #22223b; /* ตัวอย่างสีตัวอักษร */
+            border-radius: 25px; /* ให้มุมของลิงก์เป็นทรงกลม */
+            display: inline-block; /* ให้ลิงก์แสดงแบบ inline-block เพื่อจัดตำแหน่งได้ */
+            font-size: 1.2rem; /* ขนาดฟอนต์ */
+            text-align: center;
+
+            
+        }
+        
+        .a1:hover {
+            
+            background-color: #ff9900; /* สีพื้นหลังเมื่อวางเมาส์ */
+            color: white; /* สีตัวอักษรเมื่อวางเมาส์ */
+            transform: scale(1.05); /* ขยายขนาดเล็กน้อยเมื่อวางเมาส์ */
+            transition: all 0.3s ease; /* เพิ่ม transition สำหรับเอฟเฟกต์ */
+        }
+        .a2 {
+            text-decoration: none; /* ลบขีดเส้นใต้ */
+            color: #ffcc00; /* เปลี่ยนสีข้อความเป็นสีเหลือง */
+        }
+        .a2:hover {
+            color: #ff9900; /* เปลี่ยนเป็นสีเหลืองเข้มเมื่อ hover */
+        }
+        
     </style>
     
     <script>
@@ -451,7 +560,7 @@
     <div class="background-stars"></div>
     <div class="balloons"></div>
 
-    <h1 class="main-title">🎉 สุขสันต์วันเกิด 🎉</h1>
+    <h1 class="main-title">🎉 สุขสันต์วันเกิดเเจ็คกี้ 🎉</h1>
     <p class="subtitle">ขอให้วันพิเศษนี้เต็มไปด้วยความสุข ความรัก และเสียงหัวเราะ(จากใจเเชทจีพีที)</p>
     <a href="#cake-section" class="cta-button">เป่าเค้กวันเกิด</a>
     </section>
@@ -459,6 +568,9 @@
     <section id="birthday-wishes">
         <div class="wishes-container">
             <h2 class="wishes-title">🎁 คำอวยพรวันเกิด 🎁</h2>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScooc9y1Lu8CL862rMdxIQH4Iy1aARl2Pl_xzU-jsgDoG4uzQ/viewform?usp=dialog" class="a1">กดเพื่ออวยพร</a>
+            <a href="https://docs.google.com/spreadsheets/d/1O1BcZsgA-xJlxyAV38bs6xuRlDLIH7L52aMyDWRRFSw/edit?usp=sharing" class="a2">ดูคำอวยพรจากคนอื่นๆ</a>
+
             <div class="wishes-grid">
                 <div class="wish-card">
                     <p class="wish-text">สุขภาพแข็งแรง พร้อมลุยทุกอย่างกับชีวิต เส้นทางราบรื่น มีความสุขตลอดปีและตลอดไปป                                    </p>
@@ -487,11 +599,19 @@
                     <p class="wish-author">- เเชท จีพีทีไงจะใครล่ะ</p>
                 </div>
                 <div class="wish-card2">
-                    <a href="https://krunokpaclick.my.canva.site/happy-birthday-jacky"  
+                    <a href="https://krunokpaclick.my.canva.site/happy-birthday-"  
                     style="color: red; display: block; text-align: center; margin: 50px auto; width: fit-content;">
                     อันนี้พิเศษมากๆต้องกดดูเอง
                  </a>
                  <p class="wish-author" style="text-align: center;">- ธันว์นะอิอิ</p>
+                 
+                </div>
+                <div class="wish-card3">
+                    <a href="https://krunokpaclick.my.canva.site/hbdjack"  
+                    style="color: red; display: block; text-align: center; margin: 50px auto; width: fit-content;">
+                    อันนี้พิเศษมากๆต้องกดดูเองเหมือนกัน
+                 </a>
+                 <p class="wish-author" style="text-align: center;">- โต้ คนรักเดียว</p>
                  
                 </div>
             </div>
